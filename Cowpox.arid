@@ -1,0 +1,6 @@
+project
+    name = Hello
+    requires += Kivy
+package name = ahw
+main module = hello
+android accept_sdk_license = true
