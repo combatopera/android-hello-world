@@ -1,5 +1,4 @@
 android app_name = Cowpox Example
 project requires += Kivy
-package name = ahw
 main module = hello
 SDK accept licenses = true
