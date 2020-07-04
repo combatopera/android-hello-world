@@ -1,6 +1,5 @@
-project
-    name = Hello
-    requires += Kivy
+android app_name = Cowpox Example
+project requires += Kivy
 package name = ahw
 main module = hello
 android accept_sdk_license = true
