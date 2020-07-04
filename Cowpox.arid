@@ -1,4 +1,6 @@
-android app_name = Cowpox Example
+android
+    app_name = Cowpox Example
+    package = com.yoyodyne.cowpox_example
 requirements := $list()
 requirements += Kivy
 main module = hello
