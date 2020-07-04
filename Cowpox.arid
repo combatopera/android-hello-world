@@ -1,5 +1,5 @@
 android
     app_name = Cowpox Example
     package = com.yoyodyne.cowpox_example
-main module = hello
+main module = ahw
 SDK accept licenses = true
