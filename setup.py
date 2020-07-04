@@ -1,6 +1,6 @@
+from setuptools import find_packages, setup # Must precede Cython import.
 from Cython.Build import cythonize
 from pathlib import Path
-from setuptools import find_packages, setup
 
 setup(
     entry_points = {'console_scripts': ['android-hello=ahw:main']},
