@@ -1,6 +1,6 @@
 MIRROR_VOLUME = mirror
 SRC_PATH = /src
-VENV_PATH = venv
+VENV_PATH = build/venv
 
 .PHONY: apk
 apk:
