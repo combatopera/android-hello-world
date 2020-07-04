@@ -1,5 +1,6 @@
 android
     app_name = Cowpox Example
     package = com.yoyodyne.cowpox_example
+: TODO: Make it possible to refer to a console_scripts entry.
 main module = ahw
 SDK accept licenses = true
