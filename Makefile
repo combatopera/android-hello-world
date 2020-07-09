@@ -4,8 +4,8 @@ VENV_PATH = build/venv
 
 .PHONY: apk
 apk:
-	mkdir -pv build/mirror # TODO: Do not guess where Cowpox expects it to be.
-	docker run --rm -it -v "$$PWD":'$(SRC_PATH)' -v '$(MIRROR_VOLUME)':'$(SRC_PATH)'/build/mirror combatopera/cowpox '$(SRC_PATH)'
+	mkdir -pv build/Cowpox-mirror # TODO: Do not guess where Cowpox expects it to be.
+	docker run --rm -it -v "$$PWD":'$(SRC_PATH)' -v '$(MIRROR_VOLUME)':'$(SRC_PATH)'/build/Cowpox-mirror combatopera/cowpox '$(SRC_PATH)'
 
 .PHONY: test
 test:
