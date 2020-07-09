@@ -1,6 +1,6 @@
-from setuptools import Command, find_packages, setup # Must precede Cython import.
-from Cython.Build import cythonize
 from pathlib import Path
+from setuptools import Command, find_packages, setup
+from warnings import warn
 import os, subprocess
 
 mirror_volume = 'mirror'
@@ -25,6 +25,14 @@ class APK(Command):
             '-v', f"{mirror_volume}:{src_path}/{str(mirror_path).replace(os.sep, '/')}",
             'combatopera/cowpox', src_path,
         ])
+
+def cythonize(*args, **kwargs):
+    try:
+        from Cython.Build import cythonize
+    except ModuleNotFoundError:
+        warn('Cython not available, ext_modules left blank.')
+        return []
+    return cythonize(*args, **kwargs)
 
 setup(
     cmdclass = {'apk': APK},
