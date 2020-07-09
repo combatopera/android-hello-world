@@ -29,7 +29,7 @@ class APK(Command):
 setup(
     cmdclass = {'apk': APK},
     entry_points = {'console_scripts': ['android-hello=ahw:main']},
-    ext_modules = cythonize(str(Path('ahw', 'native.pyx'))),
+    ext_modules = cythonize('ahw/**/*.pyx'),
     install_requires = ['Kivy'], # TODO: Use specific version.
     name = 'android-hello-world',
     packages = find_packages(),
