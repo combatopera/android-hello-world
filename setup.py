@@ -30,6 +30,7 @@ def cythonize(*args, **kwargs):
     try:
         from Cython.Build import cythonize
     except ModuleNotFoundError:
+        # XXX: Can we make this lazy, so it's not shown when running apk command?
         warn('Cython not available, ext_modules left blank.')
         return []
     return cythonize(*args, **kwargs)
