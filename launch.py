@@ -6,6 +6,7 @@ import os, subprocess, venv
 env_dir = Path('env')
 
 def main():
+    'Example for testing the app locally.'
     bin_dir = env_dir / 'bin'
     command = [bin_dir / 'android-hello']
     if not command[0].exists():
