@@ -1,6 +1,6 @@
 from pathlib import Path
 from setuptools import Command, find_packages, setup
-from warnings import warn
+from threading import Lock
 import os, subprocess
 
 class APK(Command):
@@ -27,24 +27,28 @@ class APK(Command):
             'combatopera/cowpox', self.src_path,
         ])
 
-class cythonize(list):
+def lazy(clazz, init, *initbefore):
+    initlock = Lock()
+    init = [init]
+    def overridefactory(name):
+        orig = getattr(clazz, name)
+        def override(*args, **kwargs):
+            with initlock:
+                if init:
+                    init[0](obj)
+                    del init[:]
+            return orig(*args, **kwargs)
+        return override
+    Lazy = type('Lazy', (clazz, object), {name: overridefactory(name) for name in initbefore})
+    obj = Lazy()
+    return obj
+
+def cythonize(*args, **kwargs):
     'Allow running apk command with only Python installed.'
-
-    class Guard: pass
-
-    def __init__(self, *args, **kwargs):
-        super().__init__([self.Guard()])
-        self.args = args
-        self.kwargs = kwargs
-
-    def _populate(self):
+    def init(ext_modules):
         from Cython.Build import cythonize
-        self[:] = cythonize(*self.args, **self.kwargs)
-        self._populate = lambda: None
-
-    def __iter__(self):
-        self._populate()
-        return super().__iter__()
+        ext_modules[:] = cythonize(*args, **kwargs)
+    return lazy(list, init, '__iter__', '__len__')
 
 setup(
     cmdclass = {'apk': APK},
