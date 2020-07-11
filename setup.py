@@ -27,14 +27,23 @@ class APK(Command):
             'combatopera/cowpox', self.src_path,
         ])
 
-def cythonize(*args, **kwargs):
-    try:
+class cythonize(list):
+
+    class Void: pass
+
+    def __init__(self, *args, **kwargs):
+        super().__init__([self.Void()])
+        self.args = args
+        self.kwargs = kwargs
+
+    def _init(self):
         from Cython.Build import cythonize
-    except ModuleNotFoundError:
-        # XXX: Can we make this lazy, so it's not shown when running apk command?
-        warn('Cython not available, ext_modules left blank.')
-        return []
-    return cythonize(*args, **kwargs)
+        self[:] = cythonize(*self.args, **self.kwargs)
+        self._init = lambda: None
+
+    def __iter__(self):
+        self._init()
+        return super().__iter__()
 
 setup(
     cmdclass = {'apk': APK},
