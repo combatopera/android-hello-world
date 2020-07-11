@@ -28,6 +28,7 @@ class APK(Command):
         ])
 
 class cythonize(list):
+    'Allow running apk command with only Python installed.'
 
     class Guard: pass
 
