@@ -14,7 +14,7 @@ def main():
         install = lambda *args: subprocess.check_call([bin_dir / 'pip', 'install', *args])
         install('--upgrade', 'pip')
         install('Cython')
-        install('--editable', '.')
+        install('--editable', '.') # XXX: Can we make native.pyx editable too?
     os.execv(command[0], command)
 
 if '__main__' == __name__:
