@@ -29,20 +29,20 @@ class APK(Command):
 
 class cythonize(list):
 
-    class Void: pass
+    class Guard: pass
 
     def __init__(self, *args, **kwargs):
-        super().__init__([self.Void()])
+        super().__init__([self.Guard()])
         self.args = args
         self.kwargs = kwargs
 
-    def _init(self):
+    def _populate(self):
         from Cython.Build import cythonize
         self[:] = cythonize(*self.args, **self.kwargs)
-        self._init = lambda: None
+        self._populate = lambda: None
 
     def __iter__(self):
-        self._init()
+        self._populate()
         return super().__iter__()
 
 setup(
