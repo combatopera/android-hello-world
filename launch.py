@@ -14,7 +14,6 @@ def main():
         venv.create(env_dir, with_pip = True)
         install = lambda *args: subprocess.check_call([bin_dir / 'pip', 'install', *args])
         install('--upgrade', 'pip')
-        install('Cython')
         install('--editable', '.') # XXX: Can we make native.pyx editable too?
     os.execv(command[0], command)
 
