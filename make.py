@@ -8,6 +8,7 @@ mirror_relpath = Path('build', 'Cowpox-mirror') # TODO: Do not guess where Cowpo
 src_path = '/src'
 
 def main():
+    'Example for building the APK.'
     for d in mirror_volume, mirror_relpath:
         d.mkdir(parents = True, exist_ok = True)
     command = [
