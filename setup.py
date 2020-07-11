@@ -1,7 +1,16 @@
 from pathlib import Path
 from setuptools import Command, find_packages, setup
-from threading import Lock
-import os, subprocess
+from tempfile import NamedTemporaryFile
+from urllib.request import urlopen
+from zipfile import ZipFile
+import os, shutil, subprocess
+
+# Lazy cythonize to allow running apk command with only Python installed:
+with NamedTemporaryFile() as g:
+    with urlopen('https://files.pythonhosted.org/packages/dd/22/f5573c59f64f935c7153b58f1ceeaa1938cf8d22f71950d64fc56e148db7/pyven-44-py2.py3-none-any.whl') as f:
+        shutil.copyfileobj(f, g)
+    with ZipFile(g.name) as zf, zf.open('pyven/cythonize.py') as f:
+        exec(f.read())
 
 class APK(Command):
 
@@ -26,29 +35,6 @@ class APK(Command):
             '-v', f"{self.mirror_volume}:{self.src_path}/{str(self.mirror_relpath).replace(os.sep, '/')}",
             'combatopera/cowpox', self.src_path,
         ])
-
-def lazy(clazz, init, *initbefore):
-    initlock = Lock()
-    init = [init]
-    def overridefactory(name):
-        orig = getattr(clazz, name)
-        def override(*args, **kwargs):
-            with initlock:
-                if init:
-                    init[0](obj)
-                    del init[:]
-            return orig(*args, **kwargs)
-        return override
-    Lazy = type('Lazy', (clazz, object), {name: overridefactory(name) for name in initbefore})
-    obj = Lazy()
-    return obj
-
-def cythonize(*args, **kwargs):
-    'Allow running apk command with only Python installed.'
-    def init(ext_modules):
-        from Cython.Build import cythonize
-        ext_modules[:] = cythonize(*args, **kwargs)
-    return lazy(list, init, '__getitem__', '__iter__', '__len__')
 
 setup(
     cmdclass = {'apk': APK},
