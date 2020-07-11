@@ -5,7 +5,7 @@ import os
 
 mirror_volume = Path.home() / '.Cowpox' / 'mirror'
 mirror_relpath = Path('build', 'Cowpox-mirror') # TODO: Do not guess where Cowpox expects it to be.
-src_path = '/src'
+container_path = '/src'
 
 def main():
     'Example for building the APK.'
@@ -13,9 +13,9 @@ def main():
         d.mkdir(parents = True, exist_ok = True)
     command = [
         'docker', 'run', '--rm', '-it',
-        '-v', f"{Path.cwd()}:{src_path}",
-        '-v', f"{mirror_volume}:{src_path}/{str(mirror_relpath).replace(os.sep, '/')}",
-        'combatopera/cowpox', src_path,
+        '-v', f"{Path.cwd()}:{container_path}",
+        '-v', f"{mirror_volume}:{container_path}/{str(mirror_relpath).replace(os.sep, '/')}",
+        'combatopera/cowpox', container_path,
     ]
     os.execvp(command[0], command)
 
