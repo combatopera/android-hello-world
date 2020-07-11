@@ -1,5 +1,6 @@
+/android_hello_world.egg-info/
 /build/
+/env/
 __pycache__/
 *.c
 *.so
-/android_hello_world.egg-info/
