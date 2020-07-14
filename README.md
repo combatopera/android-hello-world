@@ -9,3 +9,5 @@ Example project for [Cowpox](https://github.com/combatopera/Cowpox)
 * Then `python3 make.py` will make an APK (this will take a while)
   * About a gigabyte of disk space is needed for the Cowpox image that this downloads from Docker Hub
 * You can also `python3 launch.py` to test locally without building an APK
+## Licensing
+* This project is public domain, see [UNLICENSE](UNLICENSE)
