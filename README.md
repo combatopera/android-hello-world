@@ -11,3 +11,5 @@ Example project for [Cowpox](https://github.com/combatopera/Cowpox)
 * You can also `python3 launch.py` to test locally without building an APK
 ## Licensing
 * This project is public domain, see [UNLICENSE](UNLICENSE)
+## Contact
+* DMs open [@Cowpox2020](https://twitter.com/Cowpox2020)
