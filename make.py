@@ -3,21 +3,21 @@
 from pathlib import Path
 import os
 
-mirror_volume = Path.home() / '.Cowpox' / 'mirror'
+host_mirror = Path.home() / '.Cowpox' / 'mirror'
 mirror_relpath = Path('build', 'Cowpox-mirror')
-container_path = '/src'
+container_src = '/src'
 
 def main():
     'Example for building the APK.'
-    for d in mirror_volume, mirror_relpath:
+    for d in host_mirror, mirror_relpath:
         d.mkdir(parents = True, exist_ok = True)
     command = [
         'docker', 'run', '--rm', '-it',
-        '-v', f"{Path.cwd()}:{container_path}",
-        '-v', f"{mirror_volume}:{container_path}/{str(mirror_relpath).replace(os.sep, '/')}",
+        '-v', f"{Path.cwd()}:{container_src}",
+        '-v', f"{host_mirror}:{container_src}/{str(mirror_relpath).replace(os.sep, '/')}",
         'combatopera/cowpox',
-        f"container src = {container_path}",
-        f"mirror path = {container_path}/{str(mirror_relpath).replace(os.sep, '/')}",
+        f"container src = {container_src}",
+        f"mirror path = {container_src}/{str(mirror_relpath).replace(os.sep, '/')}",
     ]
     os.execvp(command[0], command)
 
