@@ -4,7 +4,7 @@ from pathlib import Path
 import os
 
 mirror_volume = Path.home() / '.Cowpox' / 'mirror'
-mirror_relpath = Path('build', 'Cowpox-mirror') # TODO: Do not guess where Cowpox expects it to be.
+mirror_relpath = Path('build', 'Cowpox-mirror')
 container_path = '/src'
 
 def main():
@@ -17,6 +17,7 @@ def main():
         '-v', f"{mirror_volume}:{container_path}/{str(mirror_relpath).replace(os.sep, '/')}",
         'combatopera/cowpox',
         f"container src = {container_path}",
+        f"mirror path = {container_path}/{str(mirror_relpath).replace(os.sep, '/')}",
     ]
     os.execvp(command[0], command)
 
