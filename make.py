@@ -16,7 +16,7 @@ def main():
         '-v', f"{host_mirror}:{container_mirror}",
         'combatopera/cowpox',
         f"container src = {container_src}",
-        f"mirror path = {container_mirror}",
+        f"container mirror = {container_mirror}",
     ]
     os.execvp(command[0], command)
 
