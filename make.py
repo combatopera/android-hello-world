@@ -15,7 +15,8 @@ def main():
         'docker', 'run', '--rm', '-it',
         '-v', f"{Path.cwd()}:{container_path}",
         '-v', f"{mirror_volume}:{container_path}/{str(mirror_relpath).replace(os.sep, '/')}",
-        'combatopera/cowpox', container_path,
+        'combatopera/cowpox',
+        f"container src = {container_path}",
     ]
     os.execvp(command[0], command)
 
