@@ -10,3 +10,7 @@ jobs:
         python-version: 3.6
     - run: pip install Cowpox
     - run: Cowpox
+    - uses: actions/upload-artifact@v2
+      with:
+        name: APK
+        path: build/Cowpox/bin/outputs/apk/debug/project-debug.apk
