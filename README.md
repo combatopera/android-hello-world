@@ -5,6 +5,7 @@ Example project for [Cowpox](https://github.com/combatopera/Cowpox)
 * Install [Docker](https://docs.docker.com/get-docker/) for your platform
     * Follow the installation instructions up until you can `docker run hello-world`
 * Get [Python 3](https://www.python.org/) if you don't already have it
+    * See [GitHub Actions config](.github/workflows/Cowpox.yml) for supported versions
 * Install scripts using `pip3 install --user Cowpox`
 * If you're reading this on GitHub, now is the time to clone the repository
 * Then `Cowpox` will make an APK (this will take a while)
