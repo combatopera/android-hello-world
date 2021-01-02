@@ -11,7 +11,8 @@ Example project for [Cowpox](https://github.com/combatopera/Cowpox)
     * As part of this process an image is downloaded from Docker Hub, for which about a gigabyte of disk space is needed
 
 ## Developing
-* You can `python3 launch.py` to test locally without building an APK
+* You can test locally like you would any other Python project without building an APK
+    * One way to run the app is `python3 launch.py`
 
 ## Licensing
 * This project is public domain, see [UNLICENSE](UNLICENSE)
