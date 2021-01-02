@@ -13,7 +13,8 @@ Example project for [Cowpox](https://github.com/combatopera/Cowpox)
 
 ## Developing
 * You can test locally like you would any other Python project without building an APK
-    * One way to run the app is `python3 launch.py`
+    * One way to run the app is `pip3 install --user pyven` once and then simply `launch`
+        * To rebuild native components use `launch --build`
 
 ## Licensing
 * This project is public domain, see [UNLICENSE](UNLICENSE)
